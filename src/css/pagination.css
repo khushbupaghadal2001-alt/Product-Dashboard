@@ -1,0 +1,9 @@
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+}
+.pagenationButton{
+    background-color: rgb(223, 222, 222);
+}

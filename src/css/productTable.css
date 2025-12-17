@@ -1,0 +1,51 @@
+.addProductButton{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.card-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.card-dtails{
+    border:  1px solid rgba(0,0,0,0.12);
+    border-radius: 20px;
+    padding: 15px 10px;
+}
+.card-footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.editeButton{
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 8px 18px;    
+}
+.outOfStock{
+    color: red;
+}
+.inStock{
+    color: green;
+}
+.delteButton{
+    background-color: red;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 8px 18px;    
+}

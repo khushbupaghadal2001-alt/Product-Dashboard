@@ -1,0 +1,87 @@
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.181);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-container{
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    position: relative;
+    min-width: 550px;
+    max-width: 80%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.modal-Header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modalHader{
+    display: flex;
+    justify-content: space-between;
+}
+.heading{
+    margin: 0;
+}
+.closeModal{
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    color: grey;
+    padding: 5px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-body{
+    text-align: start;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    padding: 15px 0;
+}
+.labelText{
+    display: flex;
+    width: 20%;
+}
+.inputField{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+}
+.fieldType{
+    width: 80%;
+}
+.submitButton{
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(67, 81, 172);
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+.fieldMandatory{
+    color: red;
+}
+.inputText{
+    border: 1px solid rgb(0, 0, 0, 0.12);
+    border-radius: 8px;
+    padding: 8px !important;
+    width: 100% !important;
+}
+.errorMassage{
+    color: red;
+    font-size: 12px;
+  margin-top: 4px;
+}
+
