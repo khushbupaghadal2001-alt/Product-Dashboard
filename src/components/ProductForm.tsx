@@ -1,7 +1,8 @@
 import z from "zod";
 import "../css/productForm.css"
-import type { ca } from "zod/locales";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "./ui/button";
 
 type Props = {
     openModal: boolean;
@@ -77,8 +78,8 @@ const ProductForm = (props: Props) => {
           </div>
         </div>
 
-       <div className="modal-footer">
-            <button className="submitButton">Submit</button>
+       <div className="flex justify-end">
+            <Button className="submitButton" variant={"default"}>Submit</Button>
           </div>
       </form>
       </div>
