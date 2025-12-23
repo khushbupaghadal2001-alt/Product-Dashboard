@@ -9,60 +9,74 @@
       "createdAt": "2025-01-10T10:30:00Z"
     },
     {
-      "id": "p2",
-      "name": "Bluetooth Headphones",
+      "name": "Bluetooth Headphones12",
       "category": "Electronics",
       "price": 2499,
       "stock": 0,
-      "createdAt": "2025-01-11T09:15:00Z"
+      "id": "p2"
     },
     {
-      "id": "p3",
-      "name": "Men's Cotton T-Shirt",
-      "category": "Clothing",
-      "price": 499,
-      "stock": 25,
-      "createdAt": "2025-01-12T14:45:00Z"
-    },
-    {
-      "id": "p4",
-      "name": "Women's Denim Jeans",
-      "category": "Clothing",
-      "price": 1799,
-      "stock": 8,
-      "createdAt": "2025-01-13T11:00:00Z"
-    },
-    {
-      "id": "p5",
-      "name": "Basmati Rice 5kg",
-      "category": "Grocery",
-      "price": 699,
-      "stock": 0,
-      "createdAt": "2025-01-14T16:20:00Z"
-    },
-    {
-      "id": "p6",
-      "name": "Organic Honey 500g",
-      "category": "Grocery",
-      "price": 349,
-      "stock": 15,
-      "createdAt": "2025-01-15T13:10:00Z"
-    },
-    {
-      "id": "p7",
-      "name": "Laptop Backpack",
+      "id": "8b6f",
+      "name": "product 3",
       "category": "Electronics",
-      "price": 1299,
-      "stock": 6,
-      "createdAt": "2025-01-16T17:40:00Z"
+      "price": 1532,
+      "stock": 2560
     },
     {
-      "id": "p8",
-      "name": "Running Shoes",
+      "id": "436f",
+      "name": "product 4",
+      "category": "Grocery",
+      "price": 5323,
+      "stock": 25
+    },
+    {
+      "id": "8677",
+      "name": "product 5",
       "category": "Clothing",
-      "price": 2999,
-      "stock": 4,
-      "createdAt": "2025-01-17T08:50:00Z"
+      "price": 456,
+      "stock": 59
+    },
+    {
+      "id": "6cdb",
+      "name": "product 6",
+      "category": "Grocery",
+      "price": 4002,
+      "stock": 26
+    },
+    {
+      "id": "ac9f",
+      "name": "product 7",
+      "category": "Grocery",
+      "price": 4500,
+      "stock": 0
+    },
+    {
+      "id": "a42f",
+      "name": "product 8",
+      "category": "Clothing",
+      "price": 2900,
+      "stock": 5
+    },
+    {
+      "id": "0e9c",
+      "name": "product 9",
+      "category": "Electronics",
+      "price": 16,
+      "stock": 0
+    },
+    {
+      "id": "648e",
+      "name": "product 10",
+      "category": "Electronics",
+      "price": 362,
+      "stock": 6
+    },
+    {
+      "id": "c49e",
+      "name": "product 11 ",
+      "category": "Electronics",
+      "price": 26,
+      "stock": 15
     }
   ]
 }

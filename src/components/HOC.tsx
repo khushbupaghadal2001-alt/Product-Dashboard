@@ -10,7 +10,23 @@ export const HOC = (Component: any) => {
       <>
         <div className="bg-gray-300 flex">
           <div className="w-2/12 border-r border-gray-400">
-            <img src={logo} alt="logo" width={200} height={200} />
+            <div className="flex justify-center items-center h-16">
+              <img
+                src="https://avada.com/wp-content/uploads/2022/08/avada-logo-festive.svg"
+                alt="logo"
+                width={200}
+                height={200}
+              />
+            </div>
+            <div className="ml-6 py-3">
+              <ul className="">
+                <li className="text-[25px]">Dasboard</li>
+                <li className="text-[25px]">Dasboard</li>
+                <li className="text-[25px]">Dasboard</li>
+                <li className="text-[25px]">Dasboard</li>
+                <li className="text-[25px]">Dasboard</li>
+              </ul>
+            </div>
           </div>
           <div className="w-10/12">
             <div className="h-16 flex justify-between items-center border-b border-gray-400 px-[10px]">

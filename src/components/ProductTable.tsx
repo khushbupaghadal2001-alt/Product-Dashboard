@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../css/productTable.css";
-import { useGetProducts } from "../hook/useProducts";
+import { useDeleteProduct, useGetProducts } from "../hook/useProducts";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "./ui/DataTable";
 import { Button } from "./ui/button";
@@ -17,20 +17,28 @@ interface productType {
 }
 const ProductTable = () => {
   const [products, setProducts] = useState<productType[]>([])
-
-  useEffect(() => {
-    const fetchProducts = async () => {
+  const fetchProducts = async () => {
       const response = await useGetProducts()
       setProducts(response)
     }
+  useEffect(() => {
     fetchProducts()
   }, [])
   const [openModal, setOpenModal] = useState(false);
   const [editData, setEditData] = useState({});
+  const handleUpdate = (data: any) => {
+    setEditData(data);
+    setOpenModal(true);
+  }
+  const handleDelete = async (data: any) => {
+    await useDeleteProduct(data.id)
+    fetchProducts()
+  }
    const columns: ColumnDef<productType>[] = [
     {
       accessorKey: "name",
       header: "Product Name",
+
     },
     {
       accessorKey: "category",
@@ -66,26 +74,31 @@ const ProductTable = () => {
     {
       id: "action",
       header: "Action",
-      cell: () => (
-        <div className="flex gap-2">
-          <Button variant="ghost">
+      cell: (row) => 
+      {
+        console.log("🚀 ~ ProductTable ~ row:", row)
+        return (
+          <div className="flex gap-2">
+          <Button variant="ghost" onClick={() => handleUpdate(row?.cell?.row?.original)}>
             <FaRegEdit />
           </Button>
-          <Button variant="ghost">
+          <Button variant="ghost" onClick={() => handleDelete(row?.cell?.row?.original)}>
             <RiDeleteBinLine className="text-red-500" />
           </Button>
         </div>
-      ),
+        )
+      }
+      ,
     },
   ]
   return (
     <>
       <div className="flex justify-end mb-2.5">
-        <Button variant={"outline"} onClick={() => setOpenModal(true)}>Add Product</Button>
+        <Button variant={"outline"} onClick={() => {setEditData({});setOpenModal(true)}}>Add Product</Button>
       </div>
       <DataTable columns={columns} data={products} />
       {
-        openModal && <ProductForm openModal={openModal} setOpenModal={setOpenModal} editData={editData} setEditData={setEditData} />
+        openModal && <ProductForm openModal={openModal} setOpenModal={setOpenModal} editData={editData} setEditData={setEditData} refreshProducts={fetchProducts} />
       }
     </>
   );
