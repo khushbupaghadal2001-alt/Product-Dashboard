@@ -17,8 +17,8 @@ interface productType {
 }
 const ProductTable = () => {
   const [products, setProducts] = useState<productType[]>([])
-  const fetchProducts = async () => {
-      const response = await useGetProducts()
+  const fetchProducts = async (value = "") => {
+      const response = await useGetProducts(value)
       setProducts(response)
     }
   useEffect(() => {
@@ -26,6 +26,7 @@ const ProductTable = () => {
   }, [])
   const [openModal, setOpenModal] = useState(false);
   const [editData, setEditData] = useState({});
+  const [search, setSearch] = useState("");
   const handleUpdate = (data: any) => {
     setEditData(data);
     setOpenModal(true);
@@ -34,6 +35,14 @@ const ProductTable = () => {
     await useDeleteProduct(data.id)
     fetchProducts()
   }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchProducts(search);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [search]);
+
    const columns: ColumnDef<productType>[] = [
     {
       accessorKey: "name",
@@ -76,7 +85,6 @@ const ProductTable = () => {
       header: "Action",
       cell: (row) => 
       {
-        console.log("🚀 ~ ProductTable ~ row:", row)
         return (
           <div className="flex gap-2">
           <Button variant="ghost" onClick={() => handleUpdate(row?.cell?.row?.original)}>
@@ -96,7 +104,7 @@ const ProductTable = () => {
       <div className="flex justify-end mb-2.5">
         <Button variant={"outline"} onClick={() => {setEditData({});setOpenModal(true)}}>Add Product</Button>
       </div>
-      <DataTable columns={columns} data={products} />
+      <DataTable columns={columns} data={products} onSearch={setSearch} />
       {
         openModal && <ProductForm openModal={openModal} setOpenModal={setOpenModal} editData={editData} setEditData={setEditData} refreshProducts={fetchProducts} />
       }

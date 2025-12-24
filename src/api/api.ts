@@ -19,7 +19,7 @@ export const api = async (
       headers: {
         "Content-Type": "application/json",
         ...headers,
-      },
+    },
     };
 
     if (body) {

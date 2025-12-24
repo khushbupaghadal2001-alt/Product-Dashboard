@@ -2,6 +2,7 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   useReactTable,
   type ColumnDef,
   type ColumnFiltersState,
@@ -24,30 +25,39 @@ import {
   DropdownMenuTrigger,
 } from "./dropdown-menu";
 import { ChevronDown } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  onSearch: (value: string) => void;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  onSearch,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 5,
+  });
 
   const table = useReactTable({
     data,
     columns,
     state: {
       columnFilters,
+      pagination,
     },
     onColumnFiltersChange: setColumnFilters,
+    onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   });
 
   return (
@@ -57,10 +67,7 @@ export function DataTable<TData, TValue>({
         {/* Product Name Filter */}
         <Input
           placeholder="Filter Product Name..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(e) =>
-            table.getColumn("name")?.setFilterValue(e.target.value)
-          }
+          onChange={(e) => {onSearch(e.target.value); table.setPageIndex(0);}}
           className="max-w-sm"
         />
 
@@ -160,10 +167,10 @@ export function DataTable<TData, TValue>({
         </TableBody>
       </Table>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="text-muted-foreground flex-1 text-sm">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
+        <span className="text-sm text-muted-foreground">
+          Page {table.getState()?.pagination?.pageIndex + 1} of{" "}
+          {table.getPageCount()}
+        </span>
         <div className="space-x-2">
           <Button
             variant="outline"

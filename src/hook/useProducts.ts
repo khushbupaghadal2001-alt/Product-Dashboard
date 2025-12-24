@@ -1,10 +1,11 @@
 import { api } from "../api/api";
 
-export const useGetProducts = async () => {
-  const response = await api({ endpoint: "/products", method: "GET" }).then(
+
+export const useGetProducts = async (search = "") => {
+  const query = search ? `name=${search}` : "";
+  const response = await api({ endpoint: `/products?${query}`, method: "GET" }).then(
     (res) => res
   );
-  console.log("🚀 ~ getProducts ~ response:", response);
   return response;
 };
 
