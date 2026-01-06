@@ -25,6 +25,13 @@ export const useUpdateProduct = async (id: number | string, data: any) => {
   });
 };
 
+export const getByIdProduct = async (id: number | string) => {
+  return await api({
+    endpoint: `/products/${id}`,
+    method: "GET",
+  });
+};
+
 export const useDeleteProduct = async (id: number | string) => {
   return await api({
     endpoint: `/products/${id}`,

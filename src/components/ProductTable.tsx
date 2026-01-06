@@ -7,6 +7,9 @@ import { Button } from "./ui/button";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 import ProductForm from "./ProductForm";
+import { GrView } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
+import { ArrowUpDown } from "lucide-react";
 
 interface productType {
   name: string;
@@ -27,6 +30,7 @@ const ProductTable = () => {
   const [openModal, setOpenModal] = useState(false);
   const [editData, setEditData] = useState({});
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   const handleUpdate = (data: any) => {
     setEditData(data);
     setOpenModal(true);
@@ -43,6 +47,10 @@ const ProductTable = () => {
     return () => clearTimeout(timer);
   }, [search]);
 
+  const handleView = (data: any) => {
+    navigate(`/product/${data.id}`)
+  }
+
    const columns: ColumnDef<productType>[] = [
     {
       accessorKey: "name",
@@ -56,7 +64,17 @@ const ProductTable = () => {
     },
     {
       accessorKey: "price",
-      header: "Price",
+      header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Price
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
       cell: ({ row }) => `₹ ${row.original.price}`,
     },
     {
@@ -92,6 +110,9 @@ const ProductTable = () => {
           </Button>
           <Button variant="ghost" onClick={() => handleDelete(row?.cell?.row?.original)}>
             <RiDeleteBinLine className="text-red-500" />
+          </Button>
+          <Button variant="ghost" onClick={() => handleView(row?.cell?.row?.original)}>
+            <GrView />
           </Button>
         </div>
         )

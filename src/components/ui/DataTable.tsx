@@ -3,9 +3,11 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
   useReactTable,
   type ColumnDef,
   type ColumnFiltersState,
+  type SortingState,
 } from "@tanstack/react-table";
 
 import {
@@ -41,6 +43,7 @@ export function DataTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+  const [sorting, setSorting] = React.useState<SortingState>([]);
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 5,
@@ -50,15 +53,20 @@ export function DataTable<TData, TValue>({
     data,
     columns,
     state: {
+      sorting,
       columnFilters,
       pagination,
     },
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
+
+  const isFilterApplied = table.getState().columnFilters.length > 0;
 
   return (
     <div className="rounded-md border bg-white p-4">
@@ -67,7 +75,10 @@ export function DataTable<TData, TValue>({
         {/* Product Name Filter */}
         <Input
           placeholder="Filter Product Name..."
-          onChange={(e) => {onSearch(e.target.value); table.setPageIndex(0);}}
+          onChange={(e) => {
+            onSearch(e.target.value);
+            table.setPageIndex(0);
+          }}
           className="max-w-sm"
         />
 
@@ -124,6 +135,19 @@ export function DataTable<TData, TValue>({
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+          {isFilterApplied && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-destructive border-destructive"
+              onClick={() => {
+                table.resetColumnFilters();
+                table.setPageIndex(0);
+              }}
+            >
+              Reset
+            </Button>
+          )}
         </div>
       </div>
 

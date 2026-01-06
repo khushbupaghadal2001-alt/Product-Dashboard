@@ -1,11 +1,12 @@
 import { LuMessageCircleMore } from "react-icons/lu";
-import logo from "../assets/logo.png";
 import { Input } from "./ui/input";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { useNavigate } from "react-router-dom";
 
 export const HOC = (Component: any) => {
   const newComponnet = () => {
+    const navigate = useNavigate();
     return (
       <>
         <div className="bg-gray-300 flex">
@@ -20,11 +21,11 @@ export const HOC = (Component: any) => {
             </div>
             <div className="ml-6 py-3">
               <ul className="">
-                <li className="text-[25px]">Dasboard</li>
-                <li className="text-[25px]">Dasboard</li>
-                <li className="text-[25px]">Dasboard</li>
-                <li className="text-[25px]">Dasboard</li>
-                <li className="text-[25px]">Dasboard</li>
+                <li className="text-[25px] cursor-pointer" onClick={() => navigate('/')}>Dasboard</li>
+                <li className="text-[25px] cursor-pointer" onClick={() => navigate('/cart')}>Cart</li>
+                <li className="text-[25px] cursor-pointer" onClick={() => navigate('/')}>Dasboard</li>
+                <li className="text-[25px] cursor-pointer" onClick={() => navigate('/')}>Dasboard</li>
+                <li className="text-[25px] cursor-pointer" onClick={() => navigate('/')}>Dasboard</li>
               </ul>
             </div>
           </div>
